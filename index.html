@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wyatt Dalby — Engineering Portfolio</title>
+  <title>Alex Chen — Engineering Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blue-50: #EBF4FD;
-      --blue-100: #C8E3F9;
-      --blue-300: #7BBFF0;
-      --blue-500: #2E90D9;
-      --blue-700: #1A5C8F;
+      --blue-50: #DDE9F5;
+      --blue-100: #A8C8E8;
+      --blue-300: #4A8BBF;
+      --blue-500: #1A5F8F;
+      --blue-700: #0D3D60;
       --white: #FFFFFF;
       --gray-100: #F7F9FC;
       --gray-200: #E8EEF5;
@@ -36,163 +36,69 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
+    /* ── HEADER ── */
+    .site-header {
+      background: linear-gradient(160deg, var(--blue-50) 0%, var(--white) 70%);
       border-bottom: 1px solid var(--gray-200);
-      padding: 0 5vw;
+      padding: 2.5rem 5vw 2rem;
+    }
+
+    .header-top {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      height: 60px;
-    }
-
-    .nav-name {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      color: var(--blue-700);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.875rem;
-      font-weight: 400;
-      color: var(--gray-600);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: color var(--transition);
-    }
-
-    .nav-links a:hover { color: var(--blue-500); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 88vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 5rem 5vw 4rem;
-      background: linear-gradient(160deg, var(--blue-50) 0%, var(--white) 55%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      right: -80px;
-      width: 480px;
-      height: 480px;
-      border-radius: 50%;
-      background: var(--blue-100);
-      opacity: 0.45;
-      pointer-events: none;
-    }
-
-    .hero-tag {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--blue-500);
-      margin-bottom: 1.1rem;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      line-height: 1.08;
-      color: var(--gray-900);
-      max-width: 700px;
-      animation: fadeUp 0.7s 0.1s ease both;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--blue-500);
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--gray-600);
-      max-width: 480px;
-      margin-top: 1.4rem;
-      font-weight: 300;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
-
-    .hero-meta {
-      display: flex;
-      gap: 2rem;
-      margin-top: 2.5rem;
       flex-wrap: wrap;
-      animation: fadeUp 0.7s 0.3s ease both;
+      gap: 1.5rem;
     }
 
-    .hero-meta span {
-      font-size: 0.85rem;
-      color: var(--gray-600);
+    .header-name {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--gray-900);
+      line-height: 1.1;
+    }
+
+    .header-school {
+      font-size: 0.9rem;
+      color: var(--gray-400);
+      margin-top: 0.35rem;
+      font-weight: 300;
+    }
+
+    .header-contact {
       display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .contact-pill {
+      display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-    }
-
-    .hero-meta span::before {
-      content: '';
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--blue-300);
-    }
-
-    .hero-cta {
-      margin-top: 2.8rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      animation: fadeUp 0.7s 0.4s ease both;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.7rem 1.6rem;
+      padding: 0.4rem 0.9rem;
       border-radius: 100px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all var(--transition);
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: var(--blue-500);
-      color: var(--white);
-    }
-
-    .btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); }
-
-    .btn-outline {
-      background: transparent;
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      font-size: 0.82rem;
       color: var(--blue-700);
-      border: 1.5px solid var(--blue-300);
+      text-decoration: none;
+      transition: border-color var(--transition), background var(--transition);
     }
 
-    .btn-outline:hover { background: var(--blue-50); transform: translateY(-1px); }
+    .contact-pill:hover {
+      border-color: var(--blue-300);
+      background: var(--blue-50);
+    }
+
+    .contact-pill .pill-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-right: 0.15rem;
+    }
 
     /* ── SECTIONS ── */
     section {
@@ -216,7 +122,7 @@
     }
 
     /* ── PROJECTS ── */
-    #projects { background: var(--gray-100); }
+    #projects { background: var(--white); }
 
     .projects-grid {
       display: grid;
@@ -461,45 +367,35 @@
     @media (max-width: 700px) {
       .about-grid { grid-template-columns: 1fr; }
       .about-photo-block { display: none; }
-      .nav-links { display: none; }
+      .header-top { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-name">Wyatt Dalby</a>
-    <ul class="nav-links">
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero">
-    <p class="hero-tag">Engineering Portfolio</p>
-    <h1>Building things that<br /><em>actually work.</em></h1>
-    <p class="hero-sub">
-      High school senior passionate about mechanical and electrical engineering.
-      I design, prototype, and iterate until the solution is clean.
-    </p>
-    <div class="hero-meta">
-      <span>University of California, Berkeley, '25</span>
-      <span>Berkeley, California</span>
-      <span>Engineering &amp; Robotics</span>
-    </div>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-top">
+      <div>
+        <h1 class="header-name">Wyatt Dalby</h1>
+        <p class="header-school">UC Berkeley, Class of '30 &nbsp;·&nbsp; Electrical &amp; Computer Engineering</p>
+      </div>
+      <div class="header-contact">
+        <a href="mailto:alex.chen@email.com" class="contact-pill">
+          <span class="pill-label">Email</span> alex.chen@email.com
+        </a>
+        <a href="https://linkedin.com/in/alexchen" target="_blank" class="contact-pill">
+          <span class="pill-label">LinkedIn</span> alexchen
+        </a>
+        <a href="https://github.com/alexchen" target="_blank" class="contact-pill">
+          <span class="pill-label">GitHub</span> alexchen
+        </a>
+      </div>
     </div>
   </header>
 
   <!-- PROJECTS -->
   <section id="projects">
-    <p class="section-label">Work</p>
-    <h2 class="section-title">Featured Projects</h2>
 
     <div class="projects-grid">
 
@@ -581,7 +477,7 @@
       </div>
       <div class="about-photo-block reveal">
         <div class="photo-frame">
-          <!-- Replace with: <img src="assets/headshot.jpg" alt="Photo of Wyatt Dalby" /> -->
+          <!-- Replace with: <img src="assets/headshot.jpg" alt="Photo of Alex Chen" /> -->
           👤
         </div>
       </div>
@@ -594,17 +490,17 @@
     <h2 class="section-title">Let's connect.</h2>
 
     <div class="contact-grid">
-      <a href="mailto:wyatt.dalby@gmail.com" class="contact-card reveal">
+      <a href="mailto:alex.chen@email.com" class="contact-card reveal">
         <p class="contact-label">Email</p>
-        <p class="contact-value">wyatt.dalby@gmail.com</p>
+        <p class="contact-value">alex.chen@email.com</p>
       </a>
-      <a href="https://linkedin.com/in/wyattdalby" target="_blank" class="contact-card reveal">
+      <a href="https://linkedin.com/in/alexchen" target="_blank" class="contact-card reveal">
         <p class="contact-label">LinkedIn</p>
-        <p class="contact-value">linkedin.com/in/wyattdalby</p>
+        <p class="contact-value">linkedin.com/in/alexchen</p>
       </a>
-      <a href="https://github.com/wyattdalby" target="_blank" class="contact-card reveal">
+      <a href="https://github.com/alexchen" target="_blank" class="contact-card reveal">
         <p class="contact-label">GitHub</p>
-        <p class="contact-value">github.com/wyattdalby</p>
+        <p class="contact-value">github.com/alexchen</p>
       </a>
       <div class="contact-card reveal">
         <p class="contact-label">School</p>
@@ -615,7 +511,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Wyatt Dalby</p>
+    <p>© 2025 Alex Chen</p>
     <p>Built with HTML &amp; CSS · Hosted on GitHub Pages</p>
   </footer>
 
