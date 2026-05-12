@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Chen — Engineering Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-50: #EBF4FD;
+      --blue-100: #C8E3F9;
+      --blue-300: #7BBFF0;
+      --blue-500: #2E90D9;
+      --blue-700: #1A5C8F;
+      --white: #FFFFFF;
+      --gray-100: #F7F9FC;
+      --gray-200: #E8EEF5;
+      --gray-400: #8A9AB0;
+      --gray-600: #4A5A6E;
+      --gray-900: #1A2130;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --radius: 12px;
+      --transition: 0.22s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--blue-700);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--gray-600);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--blue-500); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 5vw 4rem;
+      background: linear-gradient(160deg, var(--blue-50) 0%, var(--white) 55%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: var(--blue-100);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-500);
+      margin-bottom: 1.1rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.08;
+      color: var(--gray-900);
+      max-width: 700px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--blue-500);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      max-width: 480px;
+      margin-top: 1.4rem;
+      font-weight: 300;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .hero-meta span {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-meta span::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue-300);
+    }
+
+    .hero-cta {
+      margin-top: 2.8rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.6rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--blue-500);
+      color: var(--white);
+    }
+
+    .btn-primary:hover { background: var(--blue-700); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue-700);
+      border: 1.5px solid var(--blue-300);
+    }
+
+    .btn-outline:hover { background: var(--blue-50); transform: translateY(-1px); }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 5rem 5vw;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-500);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--gray-900);
+      margin-bottom: 3rem;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--gray-100); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(46, 144, 217, 0.12);
+      border-color: var(--blue-300);
+    }
+
+    .project-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: var(--blue-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--blue-300);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--blue-50) 0%, var(--blue-100) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .project-body {
+      padding: 1.4rem 1.5rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.8rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 100px;
+      background: var(--blue-50);
+      color: var(--blue-700);
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--gray-900);
+      margin-bottom: 0.55rem;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-link {
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--blue-500);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap var(--transition);
+    }
+
+    .project-card:hover .project-link { gap: 0.6rem; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--gray-600);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-chip {
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      border: 1px solid var(--gray-200);
+      font-size: 0.83rem;
+      color: var(--gray-600);
+      background: var(--white);
+    }
+
+    .about-photo-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-frame {
+      width: 280px;
+      height: 340px;
+      border-radius: 180px 180px 120px 120px;
+      background: linear-gradient(160deg, var(--blue-100) 0%, var(--blue-50) 100%);
+      border: 1px solid var(--blue-200, var(--blue-100));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: var(--blue-300);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--gray-100); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 700px;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .contact-card:hover {
+      border-color: var(--blue-300);
+      transform: translateY(-2px);
+    }
+
+    .contact-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-value {
+      font-size: 0.95rem;
+      color: var(--blue-700);
+      font-weight: 400;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 5vw;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo-block { display: none; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-name">Alex Chen</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-tag">Engineering Portfolio</p>
+    <h1>Building things that<br /><em>actually work.</em></h1>
+    <p class="hero-sub">
+      High school senior passionate about mechanical and electrical engineering.
+      I design, prototype, and iterate until the solution is clean.
+    </p>
+    <div class="hero-meta">
+      <span>Westlake High School, '25</span>
+      <span>Irvine, California</span>
+      <span>Engineering &amp; Robotics</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Featured Projects</h2>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <a href="projects/autonomous-robot.html" class="project-card reveal">
+        <div class="project-img-placeholder">🤖</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Robotics</span>
+            <span class="tag">Arduino</span>
+          </div>
+          <h3 class="project-title">Autonomous Line-Following Robot</h3>
+          <p class="project-desc">
+            Designed and built a two-wheeled robot using infrared sensors and a PID controller that navigates complex track layouts with under 2% deviation.
+          </p>
+          <span class="project-link">View project →</span>
+        </div>
+      </a>
+
+      <!-- Project 2 -->
+      <a href="projects/solar-tracker.html" class="project-card reveal">
+        <div class="project-img-placeholder">☀️</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Mechanical</span>
+            <span class="tag">CAD</span>
+          </div>
+          <h3 class="project-title">Dual-Axis Solar Tracker</h3>
+          <p class="project-desc">
+            Modeled a servo-driven solar panel mount in Fusion 360 and fabricated it from laser-cut acrylic, achieving a 31% energy gain over a fixed panel.
+          </p>
+          <span class="project-link">View project →</span>
+        </div>
+      </a>
+
+      <!-- Project 3 -->
+      <a href="projects/bridge.html" class="project-card reveal">
+        <div class="project-img-placeholder">🌉</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Structural</span>
+            <span class="tag">Materials</span>
+          </div>
+          <h3 class="project-title">Balsa Wood Bridge — 280:1 Load Ratio</h3>
+          <p class="project-desc">
+            Engineered a Pratt truss bridge weighing 18 g that held 5,040 g, placing 2nd at the regional Science Olympiad competition.
+          </p>
+          <span class="project-link">View project →</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="section-label">About</p>
+        <h2 class="section-title" style="margin-bottom: 1.2rem;">Hey, I'm Alex.</h2>
+        <p>
+          I'm a senior at Westlake High School with a deep interest in how things are designed and built.
+          From 3D-printed prototypes to microcontroller code, I like projects that live in the physical world.
+        </p>
+        <p>
+          I'm actively looking for engineering internships where I can contribute, learn, and get my hands dirty.
+          I work well in teams and am comfortable going from whiteboard sketch to finished build.
+        </p>
+        <div class="skills-grid">
+          <span class="skill-chip">Fusion 360</span>
+          <span class="skill-chip">SolidWorks</span>
+          <span class="skill-chip">Arduino / C++</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">Laser Cutting</span>
+          <span class="skill-chip">3D Printing</span>
+          <span class="skill-chip">Circuit Design</span>
+          <span class="skill-chip">MATLAB</span>
+        </div>
+      </div>
+      <div class="about-photo-block reveal">
+        <div class="photo-frame">
+          <!-- Replace with: <img src="assets/headshot.jpg" alt="Photo of Alex Chen" /> -->
+          👤
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's connect.</h2>
+
+    <div class="contact-grid">
+      <a href="mailto:alex.chen@email.com" class="contact-card reveal">
+        <p class="contact-label">Email</p>
+        <p class="contact-value">alex.chen@email.com</p>
+      </a>
+      <a href="https://linkedin.com/in/alexchen" target="_blank" class="contact-card reveal">
+        <p class="contact-label">LinkedIn</p>
+        <p class="contact-value">linkedin.com/in/alexchen</p>
+      </a>
+      <a href="https://github.com/alexchen" target="_blank" class="contact-card reveal">
+        <p class="contact-label">GitHub</p>
+        <p class="contact-value">github.com/alexchen</p>
+      </a>
+      <div class="contact-card reveal">
+        <p class="contact-label">School</p>
+        <p class="contact-value">Westlake High School, Class of '25</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Alex Chen</p>
+    <p>Built with HTML &amp; CSS · Hosted on GitHub Pages</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
