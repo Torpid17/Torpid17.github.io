@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autonomous Robot — Alex Chen</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --blue-50: #EBF4FD;
+      --blue-100: #C8E3F9;
+      --blue-300: #7BBFF0;
+      --blue-500: #2E90D9;
+      --blue-700: #1A5C8F;
+      --white: #FFFFFF;
+      --gray-100: #F7F9FC;
+      --gray-200: #E8EEF5;
+      --gray-400: #8A9AB0;
+      --gray-600: #4A5A6E;
+      --gray-900: #1A2130;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --radius: 12px;
+      --transition: 0.22s ease;
+    }
+ 
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+ 
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+ 
+    .nav-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--blue-700);
+      text-decoration: none;
+    }
+ 
+    .back-link {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color var(--transition);
+    }
+ 
+    .back-link:hover { color: var(--blue-500); }
+ 
+    .project-hero {
+      padding: 4rem 5vw 3rem;
+      background: linear-gradient(160deg, var(--blue-50) 0%, var(--white) 60%);
+    }
+ 
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+ 
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 100px;
+      background: var(--blue-50);
+      color: var(--blue-700);
+      border: 1px solid var(--blue-100);
+    }
+ 
+    .project-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      color: var(--gray-900);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+ 
+    .project-hero .subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      font-weight: 300;
+      max-width: 600px;
+    }
+ 
+    .project-cover {
+      margin: 2.5rem 5vw;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--blue-50) 0%, var(--blue-100) 100%);
+      aspect-ratio: 16/7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+    }
+ 
+    .project-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+ 
+    .project-body {
+      padding: 3rem 5vw 5rem;
+      max-width: 780px;
+    }
+ 
+    .stats-row {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--gray-200);
+      border-bottom: 1px solid var(--gray-200);
+      margin-bottom: 2.5rem;
+    }
+ 
+    .stat-item label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 0.3rem;
+    }
+ 
+    .stat-item span {
+      font-size: 1rem;
+      color: var(--gray-900);
+      font-weight: 400;
+    }
+ 
+    .project-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      margin: 2rem 0 0.75rem;
+    }
+ 
+    .project-body p {
+      font-size: 0.975rem;
+      color: var(--gray-600);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+ 
+    .project-body ul {
+      margin: 0.5rem 0 1rem 1.2rem;
+    }
+ 
+    .project-body li {
+      font-size: 0.975rem;
+      color: var(--gray-600);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 0.3rem;
+    }
+ 
+    .img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+ 
+    .img-placeholder {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--gray-400);
+    }
+ 
+    footer {
+      padding: 2rem 5vw;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+ 
+    footer p {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+    }
+  </style>
+</head>
+<body>
+ 
+  <nav>
+    <a href="../index.html" class="nav-name">Alex Chen</a>
+    <a href="../index.html" class="back-link">← Back to Portfolio</a>
+  </nav>
+ 
+  <div class="project-hero">
+    <div class="project-tags">
+      <span class="tag">Robotics</span>
+      <span class="tag">Arduino</span>
+      <span class="tag">C++</span>
+    </div>
+    <h1>Autonomous Line-Following Robot</h1>
+    <p class="subtitle">
+      A self-navigating two-wheeled robot with PID control and infrared sensing, built entirely from scratch.
+    </p>
+  </div>
+ 
+  <div class="project-cover">
+    <!-- Replace with: <img src="../assets/robot-cover.jpg" alt="Robot on track" /> -->
+    🤖
+  </div>
+ 
+  <div class="project-body">
+ 
+    <div class="stats-row">
+      <div class="stat-item"><label>Timeline</label><span>8 weeks</span></div>
+      <div class="stat-item"><label>Role</label><span>Solo Build</span></div>
+      <div class="stat-item"><label>Tools</label><span>Arduino Uno, Fusion 360</span></div>
+      <div class="stat-item"><label>Result</label><span>&lt;2% deviation rate</span></div>
+    </div>
+ 
+    <h2>Overview</h2>
+    <p>
+      This project started as a class assignment and grew into a full engineering challenge.
+      I wanted to understand how feedback control systems work in practice, so I decided to design
+      and fabricate every component myself rather than use a kit.
+    </p>
+ 
+    <h2>The Problem</h2>
+    <p>
+      Getting a robot to follow a line sounds simple — until the track curves sharply or the lighting
+      changes. Basic bang-bang control creates jittery, oscillating motion. I needed a smoother solution.
+    </p>
+ 
+    <h2>My Approach</h2>
+    <p>
+      I implemented a PID (Proportional-Integral-Derivative) controller to smooth out corrections.
+      The sensors read the line position and the controller adjusts each motor's speed independently
+      to minimize error. I tuned the Kp, Ki, and Kd constants iteratively over a week of track testing.
+    </p>
+    <ul>
+      <li>5-channel IR sensor array for precise position detection</li>
+      <li>Two DC motors with PWM speed control via L298N H-bridge</li>
+      <li>Custom chassis laser-cut from 3mm acrylic</li>
+      <li>Arduino Uno as the main controller</li>
+    </ul>
+ 
+    <div class="img-grid">
+      <div class="img-placeholder">📸 Chassis photo</div>
+      <div class="img-placeholder">📸 Circuit layout</div>
+    </div>
+ 
+    <h2>Outcome</h2>
+    <p>
+      After tuning, the robot completed a complex track with sharp S-curves in 12.4 seconds with
+      less than 2% lateral deviation. I presented this at my school's engineering showcase and was
+      invited to demonstrate it at the district STEM fair.
+    </p>
+ 
+    <h2>What I Learned</h2>
+    <p>
+      PID tuning requires patience and a systematic approach — I learned to change one variable at a time
+      and document results. I also got much more comfortable reading datasheets and debugging hardware
+      issues with a multimeter and oscilloscope.
+    </p>
+ 
+  </div>
+ 
+  <footer>
+    <p>© 2025 Alex Chen</p>
+    <a href="../index.html" style="font-size:0.82rem; color: var(--blue-500); text-decoration:none;">← All projects</a>
+  </footer>
+ 
+</body>
+</html>
+ 
