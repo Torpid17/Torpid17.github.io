@@ -396,58 +396,7 @@
 
   <!-- PROJECTS -->
   <section id="projects">
-
-    <div class="projects-grid">
-
-      <!-- Project 1 -->
-      <a href="projects/autonomous-robot.html" class="project-card reveal">
-        <div class="project-img-placeholder">🤖</div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag">Robotics</span>
-            <span class="tag">Arduino</span>
-          </div>
-          <h3 class="project-title">Autonomous Line-Following Robot</h3>
-          <p class="project-desc">
-            Designed and built a two-wheeled robot using infrared sensors and a PID controller that navigates complex track layouts with under 2% deviation.
-          </p>
-          <span class="project-link">View project →</span>
-        </div>
-      </a>
-
-      <!-- Project 2 -->
-      <a href="projects/solar-tracker.html" class="project-card reveal">
-        <div class="project-img-placeholder">☀️</div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag">Mechanical</span>
-            <span class="tag">CAD</span>
-          </div>
-          <h3 class="project-title">Dual-Axis Solar Tracker</h3>
-          <p class="project-desc">
-            Modeled a servo-driven solar panel mount in Fusion 360 and fabricated it from laser-cut acrylic, achieving a 31% energy gain over a fixed panel.
-          </p>
-          <span class="project-link">View project →</span>
-        </div>
-      </a>
-
-      <!-- Project 3 -->
-      <a href="projects/bridge.html" class="project-card reveal">
-        <div class="project-img-placeholder">🌉</div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag">Structural</span>
-            <span class="tag">Materials</span>
-          </div>
-          <h3 class="project-title">Balsa Wood Bridge — 280:1 Load Ratio</h3>
-          <p class="project-desc">
-            Engineered a Pratt truss bridge weighing 18 g that held 5,040 g, placing 2nd at the regional Science Olympiad competition.
-          </p>
-          <span class="project-link">View project →</span>
-        </div>
-      </a>
-
-    </div>
+    <div class="projects-grid" id="projects-grid"></div>
   </section>
 
   <!-- ABOUT -->
@@ -516,6 +465,60 @@
   </footer>
 
   <script>
+    /* ============================================================
+       PROJECT CONFIGURATION — edit this section only
+       ============================================================
+
+       HOW TO ADD / REMOVE PROJECTS:
+       - Change NUMBER_OF_PROJECTS to show more or fewer cards
+       - Fill in the matching entry in the PROJECTS array below
+       - Each project needs: title, description, tags, emoji, file
+
+       NUMBER_OF_PROJECTS controls how many cards are displayed.
+       Only the first N projects in the array will show.
+    ============================================================ */
+
+    const NUMBER_OF_PROJECTS = 1; // ← change this number to show more projects
+
+    const PROJECTS = [
+      {
+        title:       "[Project Name]",
+        description: "[1–2 sentence description of what you built, the problem it solved, or a key result.]",
+        tags:        ["[Tag 1]", "[Tag 2]"],
+        emoji:       "📁",
+        file:        "projects/project-1.html"
+      },
+      // ── Copy and paste a block like the one above to add more projects ──
+      // {
+      //   title:       "[Project Name]",
+      //   description: "[Description]",
+      //   tags:        ["[Tag 1]", "[Tag 2]"],
+      //   emoji:       "📁",
+      //   file:        "projects/project-2.html"
+      // },
+    ];
+
+    /* ============================================================
+       Rendering — no need to edit below this line
+    ============================================================ */
+    const grid = document.getElementById('projects-grid');
+    const visible = PROJECTS.slice(0, NUMBER_OF_PROJECTS);
+
+    visible.forEach(p => {
+      const card = document.createElement('a');
+      card.href = p.file;
+      card.className = 'project-card reveal';
+      card.innerHTML = `
+        <div class="project-img-placeholder">${p.emoji}</div>
+        <div class="project-body">
+          <div class="project-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          <h3 class="project-title">${p.title}</h3>
+          <p class="project-desc">${p.description}</p>
+          <span class="project-link">View project →</span>
+        </div>`;
+      grid.appendChild(card);
+    });
+
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.12 }
